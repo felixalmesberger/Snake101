@@ -22,4 +22,15 @@ public struct Point2D
   {
     return (this.X, this.Y).GetHashCode();
   }
+
+  public static bool operator ==(Point2D a,Point2D b)
+  {
+    return a.Equals(b);
+  }
+
+  public static bool operator !=(Point2D a, Point2D b)
+  {
+    return !(a == b);
+  }
+
 }

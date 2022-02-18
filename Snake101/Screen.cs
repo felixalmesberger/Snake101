@@ -11,11 +11,24 @@ public class Screen : Form
 
   private readonly bool[,] pixels = new bool[ResolutionX, ResolutionY];
 
+  private string message;
+
+  protected override CreateParams CreateParams
+  {
+    get
+    {
+      var cp = base.CreateParams;
+      cp.ExStyle |= 0x02000000;    // Turn on WS_EX_COMPOSITED
+      return cp;
+    }
+  }
+
   public Screen()
   {
     this.BackColor = Color.White;
     this.Width = ResolutionX * PixelSize + 20;
-    this.Height = ResolutionY * PixelSize + 40;
+    this.Height = ResolutionY * PixelSize + 60;
+    this.StartPosition = FormStartPosition.CenterScreen;
   }
 
   public void ClearPixels()
@@ -34,6 +47,11 @@ public class Screen : Form
       throw new ArgumentOutOfRangeException();
 
     this.pixels[x, y] = true;
+  }
+
+  public void WriteMessage(string message)
+  {
+    this.message = message;
   }
 
   public void RefreshScreen()
@@ -60,5 +78,7 @@ public class Screen : Form
         e.Graphics.FillRectangle(Brushes.Black, pixelX, pixelY, drawablePixelSize, drawablePixelSize);
       }
     }
+
+    e.Graphics.DrawString(this.message, this.Font, Brushes.Black, new Point(2, ResolutionY * PixelSize + 2));
   }
 }

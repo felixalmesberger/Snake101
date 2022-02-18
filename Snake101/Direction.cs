@@ -1,6 +1,6 @@
 namespace RetroGame;
 
-public enum SnakeDirection
+public enum Direction
 {
   Up,
   Down,

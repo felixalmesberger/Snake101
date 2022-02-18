@@ -2,6 +2,9 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace RetroGame;
 
+/// <summary>
+/// Stellt das Gerüst eines 2D Spiels dar
+/// </summary>
 public abstract class Game
 {
   private readonly Screen screen;
@@ -46,20 +49,18 @@ public abstract class Game
       case Keys.Right:
         this.OnArrowRight();
         break;
+      case Keys.Enter:
+        this.OnEnter();
+        break;
     }
   }
 
-  public void Restart()
+  
+  protected void WriteMessage(string message)
   {
-    this.Start();
-    this.gameUpdateTimer.Stop();
-    this.gameUpdateTimer.Start();
+    this.screen.WriteMessage(message);
   }
 
-  public void Stop()
-  {
-    this.gameUpdateTimer.Stop();
-  }
   protected void SetPixel(int x, int y) => this.screen.SetPixel(x, y);
   protected void SetPixel(Point2D point) => this.SetPixel(point.X, point.Y);
   protected virtual void OnArrowUp()
@@ -73,8 +74,11 @@ public abstract class Game
   protected virtual void OnArrowLeft()
   {
   }
-
   protected virtual void OnArrowRight()
+  {
+  }
+
+  protected virtual void OnEnter()
   {
   }
 

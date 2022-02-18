@@ -1,15 +1,17 @@
 namespace RetroGame;
 
-public class SnakeGame : Game
+public class SnakeGameFinished : Game
 {
 
-  private SnakeDirection snakeDirection;
+  private Direction snakeDirection;
   private readonly List<Point2D> snake = new();
   private Point2D item;
   private bool enlargeSnake;
   private Point2D newSnakeItem;
+  private bool isPlaying;
+  private int points;
 
-  public SnakeGame(Screen screen)
+  public SnakeGameFinished(Screen screen)
     : base(screen)
   {
   }
@@ -17,6 +19,7 @@ public class SnakeGame : Game
 
   protected override void Start()
   {
+    this.points = 0;
     this.InitializeSnake();
     this.InitializeGem();
   }
@@ -27,7 +30,6 @@ public class SnakeGame : Game
     var y = this.GetRandomNumber(1, this.ResolutionY - 2);
     this.item = new Point2D(x, y);
   }
-
 
   private void SnakeGemHitTest()
   {
@@ -46,44 +48,74 @@ public class SnakeGame : Game
 
   protected override void OnArrowDown()
   {
-    this.snakeDirection = SnakeDirection.Down;
+    this.snakeDirection = Direction.Down;
   }
 
   protected override void OnArrowUp()
   {
-    this.snakeDirection = SnakeDirection.Up;
+    this.snakeDirection = Direction.Up;
   }
 
   protected override void OnArrowLeft()
   {
-    this.snakeDirection = SnakeDirection.Left;
+    this.snakeDirection = Direction.Left;
   }
 
   protected override void OnArrowRight()
   {
-    this.snakeDirection = SnakeDirection.Right;
+    this.snakeDirection = Direction.Right;
+  }
+
+  protected override void OnEnter()
+  {
+    if (this.isPlaying)
+      return;
+
+    this.Start();
+    this.isPlaying = true;
   }
 
   protected override void Update()
   {
-    this.UpdateSnake();
+    if (this.isPlaying)
+    {
+      this.UpdateGame();
+    }
+    else
+    {
+      this.ShowSplashScreen();
+    }
+  }
 
-    this.SnakeGemHitTest();
-    
+  private void ShowSplashScreen()
+  {
     this.DrawBorder();
     this.DrawSnake();
     this.DrawGem();
-    
+    this.WriteMessage($"POINTS: {this.points}, PRESS ENTER TO START.");
+  }
+
+  private void UpdateGame()
+  {
+    this.UpdateSnake();
+
+    this.SnakeGemHitTest();
+
+    this.DrawBorder();
+    this.DrawSnake();
+    this.DrawGem();
+    this.WriteMessage($"POINTS: {this.points}");
+
+    if (this.SnakeHitBorder() || this.SnakeHitSnake())
+    {
+      this.isPlaying = false;
+    }
+
     if (this.enlargeSnake)
     {
       this.EnlargeSnake();
       this.InitializeGem();
-    }
-    if (this.SnakeHitBorder() || this.SnakeHitSnake())
-    {
-      this.Stop();
-      MessageBox.Show("Failed");
-      this.Restart();
+      this.points++;
     }
   }
 
@@ -124,22 +156,21 @@ public class SnakeGame : Game
 
   private void UpdateSnake()
   {
-
     for (var i = this.snake.Count - 1; i > 0; i--)
       this.snake[i] = this.snake[i - 1];
 
     switch (this.snakeDirection)
     {
-      case SnakeDirection.Up:
+      case Direction.Up:
         this.snake[0] = new Point2D(this.snake[0].X, this.snake[0].Y - 1);
         break;
-      case SnakeDirection.Down:
+      case Direction.Down:
         this.snake[0] = new Point2D(this.snake[0].X, this.snake[0].Y + 1);
         break;
-      case SnakeDirection.Left:
+      case Direction.Left:
         this.snake[0] = new Point2D(this.snake[0].X - 1, this.snake[0].Y);
         break;
-      case SnakeDirection.Right:
+      case Direction.Right:
         this.snake[0] = new Point2D(this.snake[0].X + 1, this.snake[0].Y);
         break;
       default:
@@ -180,7 +211,7 @@ public class SnakeGame : Game
   private void InitializeSnake()
   {
     this.snake.Clear();
-    this.snakeDirection = SnakeDirection.Right;
+    this.snakeDirection = Direction.Right;
     var startX = this.ResolutionX / 2;
     var startY = this.ResolutionY / 2;
 

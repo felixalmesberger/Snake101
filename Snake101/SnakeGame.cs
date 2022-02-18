@@ -1,22 +1,18 @@
-# Snake101
-Wir programmieren Snake
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using RetroGame;
 
-Snake ist ein 2D Spieleklassiker, dabei wird eine Schlange mit den Pfeiltasten der Computertastatur über ein Spielfeld gelenkt.
-Die Schlange darf weder sich selbst, noch die Wände des Spielfelds berühren. Ziel ist es sogenannte Happen zu essen, die die Schlange verlängern und einen Punkt dazuverdienen.
-
-
-## Das Gerüst
-
-### SnakeGame
-
-Die SnakeGame Klasse beinhaltet das gesamte Grundgerüst um das Spiel zu programmieren:
-
-```
-
+namespace Snake101
+{
   public class SnakeGame : Game
   {
-
-    ...  
+    public SnakeGame(RetroGame.Screen screen)
+      : base(screen)
+    {
+    }
 
     protected override void Start()
     {
@@ -28,6 +24,14 @@ Die SnakeGame Klasse beinhaltet das gesamte Grundgerüst um das Spiel zu program
       // wird in einer endlosschleife im abstand von 100 millisekunden aufgerufen.
       // hier muss das spiel neu gezeichnet werden
       // und der spielstand verändert werden
+
+      // Zeichne Wände
+      // Zeichne Schlange
+      // Zeichne Happen
+
+      // Aktualisiere Schlangenposition
+      // Überprüfe ob Schlange mit Wand kollidiert
+      // Überprüfe ob Schlange mit sich selbst kollidiert
     }
 
     protected override void OnArrowDown()
@@ -54,8 +58,5 @@ Die SnakeGame Klasse beinhaltet das gesamte Grundgerüst um das Spiel zu program
     {
       // wird aufgerufen, wenn die ENTER Taste gedrückt wurde
     }
+  }
 }
-```
-
-
-### Aufgaben
