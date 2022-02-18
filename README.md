@@ -1,9 +1,15 @@
 # Snake101
+
+![](demo.gif)
+
 Wir programmieren Snake
 
 Snake ist ein 2D Spieleklassiker, dabei wird eine Schlange mit den Pfeiltasten der Computertastatur über ein Spielfeld gelenkt.
-Die Schlange darf weder sich selbst, noch die Wände des Spielfelds berühren. Ziel ist es sogenannte Happen zu essen, die die Schlange verlängern und einen Punkt dazuverdienen.
+Die Schlange darf weder sich selbst, noch die Wände des Spielfelds berühren. Ziel ist es sogenannte Happen (Item) zu essen, die die Schlange verlängern und einen Punkt dazuverdienen.
 
+## Die Elemente
+
+![](overview.png)
 
 ## Das Gerüst
 
@@ -58,4 +64,6 @@ Die SnakeGame Klasse beinhaltet das gesamte Grundgerüst um das Spiel zu program
 ```
 
 
-### Aufgaben
+# Aufgaben
+
+##
