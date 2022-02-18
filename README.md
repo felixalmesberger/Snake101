@@ -1,6 +1,6 @@
 # Snake101
 
-![](demo.gif)
+![](https://github.com/felixalmesberger/Snake101/blob/main/res/demo.gif?raw=true)
 
 Wir programmieren Snake
 
@@ -9,7 +9,7 @@ Die Schlange darf weder sich selbst, noch die Wände des Spielfelds berühren. Z
 
 ## Die Elemente
 
-![](overview.png)
+![](https://github.com/felixalmesberger/Snake101/blob/main/res/overview.png?raw=true)
 
 ## Das Gerüst
 
