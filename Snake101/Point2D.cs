@@ -1,4 +1,4 @@
-namespace RetroGame;
+namespace Snake101;
 
 public struct Point2D
 {

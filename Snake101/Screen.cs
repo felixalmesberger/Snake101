@@ -1,4 +1,4 @@
-namespace RetroGame;
+namespace Snake101;
 
 public class Screen : Form
 {
@@ -29,6 +29,7 @@ public class Screen : Form
     this.Width = ResolutionX * PixelSize + 20;
     this.Height = ResolutionY * PixelSize + 60;
     this.StartPosition = FormStartPosition.CenterScreen;
+    this.Text = "SNAKE101";
   }
 
   public void ClearPixels()

@@ -1,11 +1,11 @@
 using Timer = System.Windows.Forms.Timer;
 
-namespace RetroGame;
+namespace Snake101;
 
 /// <summary>
 /// Stellt das Gerüst eines 2D Spiels dar
 /// </summary>
-public abstract class Game
+public abstract class SnakeGameBase
 {
   private readonly Screen screen;
   private readonly Random random = new();
@@ -15,7 +15,7 @@ public abstract class Game
     Interval = 100
   };
 
-  protected Game(Screen screen)
+  protected SnakeGameBase(Screen screen)
   {
     this.screen = screen ?? throw new ArgumentOutOfRangeException(nameof(screen));
     this.screen.KeyUp += this.ScreenKeyUp;

@@ -1,9 +1,7 @@
 using System;
 using System.Windows.Forms;
-using System.Xml.XPath;
-using Microsoft.Win32.SafeHandles;
 
-namespace RetroGame
+namespace Snake101
 {
   internal static class Program
   {

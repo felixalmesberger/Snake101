@@ -1,6 +1,6 @@
-namespace RetroGame;
+namespace Snake101;
 
-public class SnakeGameFinished : Game
+public class SnakeGameFinished : SnakeGameBase
 {
 
   private Direction snakeDirection;
